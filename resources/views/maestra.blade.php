@@ -18,7 +18,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" target="_blank" href="//parzibyte.me/blog">{{env("APP_NAME")}}</a>
+    <a class="navbar-brand" href="{{ route('home') }}">{{env("APP_NAME")}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             id="botonMenu" aria-label="Mostrar u ocultar menú">
         <span class="navbar-toggler-icon"></span>
@@ -85,17 +85,7 @@
     @yield("contenido")
 </main>
 <footer class="px-2 py-2 fixed-bottom bg-dark">
-    <span class="text-muted">Punto de venta en Laravel
-        <i class="fa fa-code text-white"></i>
-        con
-        <i class="fa fa-heart" style="color: #ff2b56;"></i>
-        por
-        <a class="text-white" href="//parzibyte.me/blog">Parzibyte</a>
-        &nbsp;|&nbsp;
-        <a target="_blank" class="text-white" href="//github.com/parzibyte/sistema_ventas_laravel">
-            <i class="fab fa-github"></i>
-        </a>
-    </span>
+    <span class="text-muted">Sistema de farmacia en Laravel</span>
 </footer>
 </body>
 </html>

@@ -13,8 +13,8 @@ class VentasController extends Controller
 
     public function index()
     {
-        $ventasConTotales = Venta::join("productos_vendidos", "productos_vendidos.id_venta", "=", "ventas.id")
-            ->select("ventas.*", DB::raw("sum(productos_vendidos.cantidad * productos_vendidos.precio) as total"))
+        $ventasConTotales = Venta::join("detalle_ventas", "detalle_ventas.id_venta", "=", "ventas.id")
+            ->select("ventas.*", DB::raw("sum(detalle_ventas.cantidad * detalle_ventas.precio) as total"))
             ->groupBy("ventas.id", "ventas.created_at", "ventas.updated_at", "ventas.id_cliente")
             ->get();
         return view("ventas.ventas_index", ["ventas" => $ventasConTotales,]);
