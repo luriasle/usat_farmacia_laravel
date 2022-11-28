@@ -6,15 +6,14 @@
             <h1>Clientes <i class="fa fa-users"></i></h1>
             <a href="{{route("clientes.create")}}" class="btn btn-success mb-2">Agregar</a>
             @include("notificacion")
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table">
+                    <thead class="thead-light">
                     <tr>
-                        <th>Nombre</th>
-                        <th>Teléfono</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Teléfono</th>
 
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,7 +39,6 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 @endsection

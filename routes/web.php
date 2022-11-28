@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VenderController;
 use App\Http\Controllers\VentasController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+App::setLocale('es');
 
 Route::get('/', function () {
     return redirect()->route('home');
@@ -49,12 +51,12 @@ Route::middleware("auth")
         Route::post("/terminarOCancelarVenta", [VenderController::class, 'terminarOCancelarVenta'])->name("terminarOCancelarVenta");
     });
 
-    Route::middleware([
-        'auth:sanctum',
-        config('jetstream.auth_session'),
-        'verified'
-    ])->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
-    });
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
+});

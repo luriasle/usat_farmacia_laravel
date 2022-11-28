@@ -1,23 +1,3 @@
-{{--
-
-  ____          _____               _ _           _       
- |  _ \        |  __ \             (_) |         | |      
- | |_) |_   _  | |__) |_ _ _ __ _____| |__  _   _| |_ ___ 
- |  _ <| | | | |  ___/ _` | '__|_  / | '_ \| | | | __/ _ \
- | |_) | |_| | | |  | (_| | |   / /| | |_) | |_| | ||  __/
- |____/ \__, | |_|   \__,_|_|  /___|_|_.__/ \__, |\__\___|
-         __/ |                               __/ |        
-        |___/                               |___/         
-    
-    Blog:       https://parzibyte.me/blog
-    Ayuda:      https://parzibyte.me/blog/contrataciones-ayuda/
-    Contacto:   https://parzibyte.me/blog/contacto/
-    
-    Copyright (c) 2020 Luis Cabrera Benito
-    Licenciado bajo la licencia MIT
-    
-    El texto de arriba debe ser incluido en cualquier redistribucion
---}}
 @extends("maestra")
 @section("titulo", "Productos")
 @section("contenido")
@@ -26,19 +6,18 @@
             <h1>Productos <i class="fa fa-box"></i></h1>
             <a href="{{route("productos.create")}}" class="btn btn-success mb-2">Agregar</a>
             @include("notificacion")
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table">
+                    <thead class="thead-light">
                     <tr>
-                        <th>Código de barras</th>
-                        <th>Descripción</th>
-                        <th>Precio de compra</th>
-                        <th>Precio de venta</th>
-                        <th>Utilidad</th>
-                        <th>Existencia</th>
+                        <th scope="col">Código de barras</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Precio de compra</th>
+                        <th scope="col">Precio de venta</th>
+                        <th scope="col">Utilidad</th>
+                        <th scope="col">Existencia</th>
 
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -68,7 +47,6 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 @endsection

@@ -1,23 +1,3 @@
-{{--
-
-____          _____               _ _           _
-|  _ \        |  __ \             (_) |         | |
-| |_) |_   _  | |__) |_ _ _ __ _____| |__  _   _| |_ ___
-|  _ <| | | | |  ___/ _` | '__|_  / | '_ \| | | | __/ _ \
-| |_) | |_| | | |  | (_| | |   / /| | |_) | |_| | ||  __/
-|____/ \__, | |_|   \__,_|_|  /___|_|_.__/ \__, |\__\___|
-       __/ |                               __/ |
-      |___/                               |___/
-
-  Blog:       https://parzibyte.me/blog
-  Ayuda:      https://parzibyte.me/blog/contrataciones-ayuda/
-  Contacto:   https://parzibyte.me/blog/contacto/
-
-  Copyright (c) 2020 Luis Cabrera Benito
-  Licenciado bajo la licencia MIT
-
-  El texto de arriba debe ser incluido en cualquier redistribucion
---}}
 @extends("maestra")
 @section("titulo", "Usuarios")
 @section("contenido")
@@ -26,14 +6,14 @@ ____          _____               _ _           _
             <h1>Usuarios <i class="fa fa-users"></i></h1>
             <a href="{{route("usuarios.create")}}" class="btn btn-success mb-2">Agregar</a>
             @include("notificacion")
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
+            {{-- <div class="table-responsive"> --}}
+                <table class="table">
+                    <thead class="thead-light">
                     <tr>
-                        <th>Correo electrónico</th>
-                        <th>Nombre</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        <th scope="col">Correo electrónico</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,7 +39,7 @@ ____          _____               _ _           _
                     @endforeach
                     </tbody>
                 </table>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 @endsection

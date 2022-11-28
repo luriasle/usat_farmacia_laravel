@@ -2,11 +2,14 @@
 
 use App\Models\Cliente;
 use App\Models\Producto;
+use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Validator;
+use Laravel\Fortify\Rules\Password;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,10 +37,7 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get("productos", function () {
             return response()->json(Producto::all());
         });
-        /*
-            Si existe un dios, que me perdone por dejar todas las peticiones aquí
-            en lugar de separarlas a otro archivo o invocar un controlador
-        */
+
         Route::post("/producto", function(Request $request){
             $producto = new Producto($request->input());
             $producto->saveOrFail();
@@ -106,3 +106,36 @@ Route::group(['prefix' => 'auth'], function () {
 
     });
 });
+
+// Route::post("/usuarios/register", function(Request $request){
+
+//     $validator = Validator::make($request->all(), [
+//         'name' => ['required', 'string', 'max:255'],
+//         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+//         'password' => ['required', 'string', new Password, 'confirmed'],
+//     ]);
+
+//     if ($validator->fails()) {
+//         return response()->json(['estado' => false, 'errors' => $validator->errors()]);
+//     } else {
+//         $usuario = new User($request->input());
+//         $usuario->password = Hash::make($usuario->password);
+
+//         if($usuario->save()){
+//             return response()->json(['estado' => true, 'data' => 'fd']);
+//         } else {
+//             return response()->json(
+//                 [
+//                     'estado' => false,
+//                     'errors' => [
+//                         'registro' => [
+//                             'Error al registrar usuario, vuelva a intentarlo por favor.'
+//                         ]
+//                     ]
+//                 ]
+//             );
+//         }
+
+//     }
+
+// })->name("usuarios.register");

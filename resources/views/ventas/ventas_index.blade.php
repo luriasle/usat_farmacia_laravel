@@ -1,23 +1,3 @@
-{{--
-
-  ____          _____               _ _           _
- |  _ \        |  __ \             (_) |         | |
- | |_) |_   _  | |__) |_ _ _ __ _____| |__  _   _| |_ ___
- |  _ <| | | | |  ___/ _` | '__|_  / | '_ \| | | | __/ _ \
- | |_) | |_| | | |  | (_| | |   / /| | |_) | |_| | ||  __/
- |____/ \__, | |_|   \__,_|_|  /___|_|_.__/ \__, |\__\___|
-         __/ |                               __/ |
-        |___/                               |___/
-
-    Blog:       https://parzibyte.me/blog
-    Ayuda:      https://parzibyte.me/blog/contrataciones-ayuda/
-    Contacto:   https://parzibyte.me/blog/contacto/
-
-    Copyright (c) 2020 Luis Cabrera Benito
-    Licenciado bajo la licencia MIT
-
-    El texto de arriba debe ser incluido en cualquier redistribucion
---}}
 @extends("maestra")
 @section("titulo", "Ventas")
 @section("contenido")
@@ -25,16 +5,15 @@
         <div class="col-12">
             <h1>Ventas <i class="fa fa-list"></i></h1>
             @include("notificacion")
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table">
+                    <thead class="thead-light">
                     <tr>
-                        <th>Fecha</th>
-                        <th>Cliente</th>
-                        <th>Total</th>
-                        <th>Ticket de venta</th>
-                        <th>Detalles</th>
-                        <th>Eliminar</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Ticket de venta</th>
+                        <th scope="col">Detalles</th>
+                        <th scope="col">Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -66,7 +45,6 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 @endsection

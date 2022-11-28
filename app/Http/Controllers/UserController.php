@@ -92,4 +92,12 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route("usuarios.index")->with("mensaje", "Usuario eliminado");
     }
+
+    // public function register(Request $request){
+    //     $usuario = new User($request->input());
+    //     $usuario->password = Hash::make($usuario->password);
+    //     $usuario2 = $usuario->save();
+    //     dd($usuario2);
+    //     return redirect()->route("home.index");
+    // }
 }
