@@ -9,26 +9,33 @@
                 <table class="table">
                     <thead class="thead-light">
                     <tr>
-                        <th scope="col">Código de barras</th>
+                        <th scope="col">Presentación</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Precio de compra</th>
-                        <th scope="col">Precio de venta</th>
-                        <th scope="col">Utilidad</th>
-                        <th scope="col">Existencia</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Costo</th>
+                        <th scope="col">Venta</th>
+                        <th scope="col">Vencimiento</th>
+                        <th scope="col">Registro Sanitario</th>
+                        <th scope="col">Laboratorio</th>
+                        <th scope="col">Estado</th>
 
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                     </tr>
                     </thead>
                     <tbody>
+
                     @foreach($productos as $producto)
                         <tr>
-                            <td>{{$producto->codigo_barras}}</td>
+                            <td>{{$producto->presentation->descripcion}}</td>
                             <td>{{$producto->descripcion}}</td>
-                            <td>{{$producto->precio_compra}}</td>
+                            <td>{{$producto->stock}}</td>
+                            <td>{{$producto->costo}}</td>
                             <td>{{$producto->precio_venta}}</td>
-                            <td>{{$producto->precio_venta - $producto->precio_compra}}</td>
-                            <td>{{$producto->existencia}}</td>
+                            <td>{{$producto->fecha_vencimiento}}</td>
+                            <td>{{$producto->registro_sanitario}}</td>
+                            <td>{{$producto->laboratory->nombre}}</td>
+                            <td>{{$producto->estado}}</td>
                             <td>
                                 <a class="btn btn-warning" href="{{route("productos.edit",[$producto])}}">
                                     <i class="fa fa-edit"></i>

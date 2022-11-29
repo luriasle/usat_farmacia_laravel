@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Cliente;
-use App\Models\Producto;
+use App\Models\Product;
 use App\Models\User;
 use App\Models\Venta;
 use Illuminate\Http\Request;
@@ -35,26 +35,26 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('user', 'AuthController@user');
 
         Route::get("productos", function () {
-            return response()->json(Producto::all());
+            return response()->json(Product::all());
         });
 
         Route::post("/producto", function(Request $request){
-            $producto = new Producto($request->input());
+            $producto = new Product($request->input());
             $producto->saveOrFail();
             return response()->json(["data" => "true"]);
         });
         Route::get("/producto/{id}", function($id){
-            $producto = Producto::findOrFail($id);
+            $producto = Product::findOrFail($id);
             return response()->json($producto);
         });
         Route::put("/producto", function(Request $request){
-            $producto = Producto::findOrFail($request->input("id"));
+            $producto = Product::findOrFail($request->input("id"));
             $producto->fill($request->input());
             $producto->saveOrFail();
             return response()->json(true);
         });
         Route::delete("/producto/{id}", function($id){
-            $producto = Producto::findOrFail($id);
+            $producto = Product::findOrFail($id);
             $producto->delete();
             return response()->json(true);
         });

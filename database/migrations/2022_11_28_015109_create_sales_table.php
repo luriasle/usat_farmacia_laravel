@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVentasTable extends Migration
+class CreateSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,37 @@ class CreateVentasTable extends Migration
      */
     public function up()
     {
-        Schema::create('ventas', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
+
             $table->string("serie");
             $table->string("numero");
             $table->decimal("sub_total", 8, 4);
             $table->decimal("total", 8, 4);
             $table->decimal("igv", 8, 4);
             $table->boolean("estado");
-            $table->unsignedBigInteger('id_cliente');
-            $table->foreign("id_cliente")
+
+            $table->unsignedBigInteger("customer_id");
+            $table->foreign("customer_id")
                 ->references("id")
-                ->on("clientes")
+                ->on("customers")
                 ->onDelete("cascade")
                 ->onUpdate("cascade");
+
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign("employee_id")
+                ->references("id")
+                ->on("employees")
+                ->onDelete("cascade")
+                ->onUpdate("cascade");
+
+            $table->unsignedBigInteger('voucher_type_id');
+            $table->foreign("voucher_type_id")
+                ->references("id")
+                ->on("voucher_types")
+                ->onDelete("cascade")
+                ->onUpdate("cascade");
+
             $table->timestamps();
         });
     }
@@ -38,6 +55,6 @@ class CreateVentasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ventas');
+        Schema::dropIfExists('sales');
     }
 }

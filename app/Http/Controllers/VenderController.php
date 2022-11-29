@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
-use App\Models\Producto;
+use App\Models\Product;
 use App\Models\ProductoVendido;
 use App\Models\Venta;
 use Illuminate\Http\Request;
@@ -42,7 +42,7 @@ class VenderController extends Controller
             // Lo guardamos
             $productoVendido->saveOrFail();
             // Y restamos la existencia del original
-            $productoActualizado = Producto::find($producto->id);
+            $productoActualizado = Product::find($producto->id);
             $productoActualizado->existencia -= $productoVendido->cantidad;
             $productoActualizado->saveOrFail();
         }
@@ -93,7 +93,7 @@ class VenderController extends Controller
     public function agregarProductoVenta(Request $request)
     {
         $codigo = $request->post("codigo");
-        $producto = Producto::where("codigo_barras", "=", $codigo)->first();
+        $producto = Product::where("codigo_barras", "=", $codigo)->first();
         if (!$producto) {
             return redirect()
                 ->route("vender.index")

@@ -3,39 +3,68 @@
 @section("contenido")
     <div class="row">
         <div class="col-12">
-            <h1>Agregar producto</h1>
-            <form method="POST" action="{{route("productos.store")}}">
-                @csrf
-                <div class="form-group">
-                    <label class="label">Código de barras</label>
-                    <input required autocomplete="off" name="codigo_barras" class="form-control"
-                           type="text" placeholder="Código de barras">
+            {{-- <h1>Agregar producto</h1> --}}
+            <div class="card">
+                <div class="card-header">
+                    Agregar Producto
                 </div>
-                <div class="form-group">
-                    <label class="label">Descripción</label>
-                    <input required autocomplete="off" name="descripcion" class="form-control"
-                           type="text" placeholder="Descripción">
-                </div>
-                <div class="form-group">
-                    <label class="label">Precio de compra</label>
-                    <input required autocomplete="off" name="precio_compra" class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de compra">
-                </div>
-                <div class="form-group">
-                    <label class="label">Precio de venta</label>
-                    <input required autocomplete="off" name="precio_venta" class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de venta">
-                </div>
-                <div class="form-group">
-                    <label class="label">Existencia</label>
-                    <input required autocomplete="off" name="existencia" class="form-control"
-                           type="decimal(9,2)" placeholder="Existencia">
-                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{route("productos.store")}}">
+                        @csrf
+                        <div class="form-row">
+                          <div class="form-group col-md-4">
+                            <label for="descripcion">Descripción</label>
+                            <input required type="text" class="form-control" name="descripcion" placeholder="Descripción">
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="laboratorio">Laboratorio</label>
+                            <select name="laboratory_id" class="form-control">
+                                <option value="1">PHARMA</option>
+                                <option value="2">ELIFARMA</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="presentation">Presentación</label>
+                            <select name="presentation_id" class="form-control">
+                                <option value="1">Aerosol</option>
+                                <option value="2">Capsula</option>
+                            </select>
+                          </div>
+                        </div>
 
-                @include("notificacion")
-                <button class="btn btn-success">Guardar</button>
-                <a class="btn btn-primary" href="{{route("productos.index")}}">Volver al listado</a>
-            </form>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="registro_sanitario">Registro Sanitario</label>
+                                <input required name="registro_sanitario" class="form-control" type="text" placeholder="Registro Sanitario">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="fecha_vencimiento">F. Vencimiento</label>
+                                <input required name="fecha_vencimiento" class="form-control" type="text" placeholder="F. Vencimiento">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="stock">Stock</label>
+                                <input required name="stock" class="form-control" type="text" placeholder="Stock">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="costo">Costo</label>
+                                <input required name="costo" class="form-control" type="text" placeholder="Costo">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="precio_venta">Precio Venta</label>
+                                <input required name="precio_venta" class="form-control" type="text" placeholder="Precio Venta">
+                            </div>
+                        </div>
+
+                        @include("notificacion")
+                        <button class="btn btn-success">Guardar</button>
+                        <a class="btn btn-primary" href="{{route("productos.index")}}">Volver al listado</a>
+
+                      </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

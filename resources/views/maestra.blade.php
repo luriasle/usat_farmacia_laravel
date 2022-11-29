@@ -9,83 +9,68 @@
     <link href="{{url("/css/bootstrap.min.css")}}" rel="stylesheet">
     <link href="{{url("/css/all.min.css")}}" rel="stylesheet">
     <style>
-        body {
-            padding-top: 70px;
-            /*Para la barra inferior fija*/
-            padding-bottom: 70px;
-        }
+
+/* hover dropdown menus */
+@media only screen and (max-width: 991px) {
+    .navbar-hover .show > .dropdown-toggle::after{
+        transform: rotate(-90deg);
+    }
+}
+@media only screen and (min-width: 992px) {
+    .navbar-hover .collapse ul li{position:relative;}
+    .navbar-hover .collapse ul li:hover> ul{display:block}
+    .navbar-hover .collapse ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
+    .navbar-hover .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
+}
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="{{ route('home') }}">{{env("APP_NAME")}}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            id="botonMenu" aria-label="Mostrar u ocultar menú">
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-hover">
+    <a class="navbar-brand" href="#">{{env("APP_NAME")}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHover" aria-controls="navbarDD" aria-expanded="false" aria-label="Navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="menu">
-        <ul class="navbar-nav mr-auto">
-            @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Login</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">
-                        Registro
-                    </a>
-                </li>
-            @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("home")}}">Inicio&nbsp;<i class="fa fa-home"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("productos.index")}}">Productos&nbsp;<i class="fa fa-box"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("vender.index")}}">Vender&nbsp;<i class="fa fa-cart-plus"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("ventas.index")}}">Ventas&nbsp;<i class="fa fa-list"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("usuarios.index")}}">Usuarios&nbsp;<i class="fa fa-users"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route("clientes.index")}}">Clientes&nbsp;<i class="fa fa-users"></i></a>
-                </li>
-            @endguest
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            @auth
-                <li class="nav-item">
-                    <a href="{{route("logout")}}" class="nav-link">
-                        Salir ({{ Auth::user()->name }})
-                    </a>
-                </li>
-            @endauth
-            <li class="nav-item">
-                <a class="nav-link" href="{{route("acerca_de.index")}}">Acerca de&nbsp;<i class="fa fa-info"></i></a>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{route("home")}}">Inicio &nbsp;<i class="fa fa-home"></i><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Registro
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{route("productos.index")}}">Productos</a></li>
+                    <li><a class="dropdown-item" href="{{route("clientes.index")}}">Clientes</a></li>
+                    <li><a class="dropdown-item" href="#">Empleados</a></li>
+                    <li><a class="dropdown-item" href="#">Proveedores</a></li>
+                    <li><a class="dropdown-item" href="#">Presentación</a></li>
+                    <li><a class="dropdown-item" href="#">Laboratorios</a></li>
+                    <li><a class="dropdown-item" href="#">Comprobantes</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Movimiento
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Compras</a></li>
+                    <li><a class="dropdown-item" href="#">Ventas</a></li>
+                </ul>
             </li>
         </ul>
     </div>
 </nav>
-<script type="text/javascript">
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const menu = document.querySelector("#menu"),
-            botonMenu = document.querySelector("#botonMenu");
-        if (menu) {
-            botonMenu.addEventListener("click", () => menu.classList.toggle("show"));
-        }
-    });
-</script>
 <main class="container-fluid">
     @yield("contenido")
 </main>
+
 <footer class="px-2 py-2 fixed-bottom bg-dark">
     <span class="text-muted">Sistema de farmacia en Laravel</span>
 </footer>
-</body>
+
+    </body>
 </html>

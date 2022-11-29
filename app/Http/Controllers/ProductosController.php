@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Producto;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductosController extends Controller
@@ -14,7 +14,8 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        return view("productos.productos_index", ["productos" => Producto::all()]);
+        $products = Product::with(['laboratory','presentation'])->get();
+        return view("productos.productos_index", ["productos" => $products]);
     }
 
     /**
@@ -35,7 +36,9 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        $producto = new Producto($request->input());
+        $request["estado"] = 1;
+        //dd($request);
+        $producto = new Product($request->input());
         $producto->saveOrFail();
         return redirect()->route("productos.index")->with("mensaje", "Producto guardado");
     }
@@ -57,7 +60,7 @@ class ProductosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit(Product $producto)
     {
         return view("productos.productos_edit", ["producto" => $producto,]);
     }
@@ -69,7 +72,7 @@ class ProductosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, Product $producto)
     {
         $producto->fill($request->input());
         $producto->saveOrFail();
@@ -82,7 +85,7 @@ class ProductosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy(Product $producto)
     {
         $producto->delete();
         return redirect()->route("productos.index")->with("mensaje", "Producto eliminado");
