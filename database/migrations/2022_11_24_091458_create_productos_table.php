@@ -20,7 +20,6 @@ class CreateProductosTable extends Migration
             $table->decimal("precio_compra", 9, 2);
             $table->decimal("precio_venta", 9, 2);
             $table->decimal("existencia", 9, 2);
-            $table->date("fecha_vencimiento");
             $table->timestamps();
         });
     }
